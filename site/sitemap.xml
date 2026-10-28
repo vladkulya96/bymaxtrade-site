@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://maxtrade.si/</loc>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://maxtrade.si/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maxtrade.si/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maxtrade.si/"/>
+  </url>
+  <url><loc>https://maxtrade.si/en/</loc>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://maxtrade.si/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maxtrade.si/en/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maxtrade.si/"/>
+  </url>
+  <url><loc>https://maxtrade.si/zasebnost/</loc>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://maxtrade.si/zasebnost/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maxtrade.si/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maxtrade.si/zasebnost/"/>
+  </url>
+  <url><loc>https://maxtrade.si/en/privacy/</loc>
+    <xhtml:link rel="alternate" hreflang="sl" href="https://maxtrade.si/zasebnost/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://maxtrade.si/en/privacy/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://maxtrade.si/zasebnost/"/>
+  </url>
+</urlset>

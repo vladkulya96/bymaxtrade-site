@@ -1,0 +1,15 @@
+# Cache rules for Cloudflare Pages / Netlify (file name: _headers, no extension).
+# Pages, style.css, the scripts and config.js are always re-checked, so a text change shows up at once.
+# Fonts and three.js never change: cached for a year. Pictures: one day.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/js/three.min.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/assets/img/*
+  Cache-Control: public, max-age=86400
+
+/*
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
