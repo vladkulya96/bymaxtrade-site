@@ -1,6 +1,13 @@
-# ROADMAP — на 28.10.2026
+# ROADMAP — на 31.10.2026
 
-Срок Влада на запуск: конец октября 2026 (до 31.10).
+**Сайт запущен 31.10.2026** на https://www.maxtrade.si (Hostko). Состояние и открытые пункты запуска — `docs/HOSTING_AND_LAUNCH.md`.
+
+## Сделано 30–31.10
+- Хостинг Hostko SH Plus оплачен до 29.10.2027, сайт загружен в `public_html`.
+- DNS: A для @ и www → 185.53.12.57 (MX/SPF Zoho не тронуты, NS не менялись).
+- SSL Let's Encrypt выпущен.
+- Форма: ключ Web3Forms, тест с EN-версии пришёл на manager@; запасной mailto на оба адреса.
+- Из политик убрана дата редакции.
 
 ## Сделано 28.10
 - Резкость на телефоне: плотность картинки до ×2,5 (раньше ×1), мягкие тени 2048, полная геометрия мешков и ягод.
@@ -8,11 +15,11 @@
 - Перенесены правки 25.10: скрытые мешки на складе не рисуются, тени на телефоне раз в три кадра, подвал «BY MAXTRADE d.o.o.».
 
 ## До запуска (по порядку важности)
-1. Ключ Web3Forms на export@maxtrade.si → `site/config.js` (`key: ''`).
+1. ~~Ключ Web3Forms~~ — сделано 31.10 (на manager@).
 2. Тест на 2–3 реальных телефонах (Android средний класс, iPhone). Если тормозит — `PR0` в `film.js` с ×2,5 до ×2.
 3. Вычитка словенских текстов носителем (`docs/02_SI_TEXTS_FOR_PROOFREADING.docx`; термины: Tečajnica, Trgovska pisarna, Glavna knjiga, Iz ladijskega dnevnika, Koledar obiranja, diferenciali, pražarji, konzultacije; порты: «Talin», «Gdansk», «Antwerpen»).
 4. Юрист: политика конфиденциальности (хостинг, передача данных вне ЕЭЗ, срок хранения).
-5. Хостинг: Cloudflare Pages или Netlify; сначала new.maxtrade.si; MX/TXT не трогать; Weblium держать как откат; проверить `site:maxtrade.si` на старые адреса и поставить 301.
+5. ~~Хостинг~~ — Hostko, запущено 31.10. Осталось: Force HTTPS, отключить Weblium через неделю, проверить `site:maxtrade.si` на старые адреса и поставить 301 в `.htaccess`.
 6. Подтвердить фразу в заявке «Торгового дома»: «We reply with what is available now — in our warehouses or afloat».
 
 ## Приостановлено по просьбе Влада (начинать только по его команде)

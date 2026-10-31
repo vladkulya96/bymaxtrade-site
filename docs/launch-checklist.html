@@ -1,0 +1,191 @@
+<title>Чек-лист запуска сайта</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one narrow column, steps grouped by stage, big tap targets; progress pinned at the top */
+:root{
+  --bg:#F3F5F7; --card:#FFFFFF; --ink:#16222C; --ink-soft:#52626F; --rule:#D8DFE5;
+  --accent:#0B6E6E; --accent-ink:#FFFFFF; --done:#7A8791; --warn-bg:#FFF1E0; --warn-ink:#7A3E00; --track:#DDE4E9;
+  --f:"Golos Text", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#10181E; --card:#18232B; --ink:#E7EDF1; --ink-soft:#9DAEBA; --rule:#2B3A45;
+    --accent:#4FC1BC; --accent-ink:#0B1A1D; --done:#6F818D; --warn-bg:#3A2A14; --warn-ink:#F2C88F; --track:#2B3A45; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#10181E; --card:#18232B; --ink:#E7EDF1; --ink-soft:#9DAEBA; --rule:#2B3A45;
+  --accent:#4FC1BC; --accent-ink:#0B1A1D; --done:#6F818D; --warn-bg:#3A2A14; --warn-ink:#F2C88F; --track:#2B3A45; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f);font-size:17px;line-height:1.5;margin:0;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px));padding-block:0 56px}
+main{max-width:720px;margin:0 auto;display:grid;gap:28px}
+header{display:grid;gap:6px;padding-top:28px}
+h1{font-size:clamp(26px,5vw,34px);line-height:1.15;margin:0;font-weight:700;text-wrap:balance}
+.sub{color:var(--ink-soft);margin:0;font-size:16px}
+.bar{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:var(--bg);padding:12px 0 10px;display:grid;gap:6px;border-bottom:1px solid var(--rule)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--bg)}
+.bar-top{display:flex;justify-content:space-between;gap:12px;align-items:baseline;font-weight:600}
+.bar-top span:last-child{color:var(--ink-soft);font-weight:500;font-variant-numeric:tabular-nums}
+.track{height:8px;border-radius:4px;background:var(--track);overflow:hidden}
+.fill{height:100%;width:0;background:var(--accent);transition:width .25s ease}
+section{display:grid;gap:10px}
+h2{font-size:19px;margin:0;font-weight:700}
+h2 small{display:block;font-size:14px;font-weight:400;color:var(--ink-soft);margin-top:2px}
+ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.item{background:var(--card);border:1px solid var(--rule);border-radius:10px}
+.item label{display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:start;padding:14px 14px;cursor:pointer}
+.item input{appearance:none;-webkit-appearance:none;width:26px;height:26px;margin:1px 0 0;border:2px solid var(--ink-soft);border-radius:6px;background:var(--card);cursor:pointer;display:grid;place-content:center}
+.item input::after{content:"";width:12px;height:7px;border-left:3px solid var(--accent-ink);border-bottom:3px solid var(--accent-ink);transform:rotate(-45deg) translate(1px,-1px);opacity:0}
+.item input:checked{background:var(--accent);border-color:var(--accent)}
+.item input:checked::after{opacity:1}
+.item input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.t{font-weight:600}
+.hint{display:block;color:var(--ink-soft);font-size:15px;font-weight:400;margin-top:2px}
+.item.on .t{color:var(--done);text-decoration:line-through;text-decoration-thickness:1px}
+.item.on .hint{color:var(--done)}
+code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.92em;background:var(--bg);border:1px solid var(--rule);border-radius:4px;padding:1px 5px;word-break:break-all}
+.msg{margin:0 14px 14px 54px;display:grid;gap:8px}
+.msg pre{margin:0;white-space:pre-wrap;word-break:break-word;font-family:var(--f);font-size:15px;background:var(--bg);border:1px solid var(--rule);border-radius:8px;padding:12px;user-select:all}
+button{font-family:var(--f);font-size:15px;font-weight:600;border-radius:8px;border:1px solid var(--accent);background:var(--accent);color:var(--accent-ink);padding:9px 14px;cursor:pointer;justify-self:start;min-height:40px}
+button.ghost{background:transparent;color:var(--accent)}
+button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.stop{background:var(--warn-bg);color:var(--warn-ink);border-radius:10px;padding:16px;display:grid;gap:6px}
+.stop h2{color:inherit;font-size:17px}
+.stop ul{gap:4px;list-style:disc;padding-left:1.2em}
+footer{display:flex;flex-wrap:wrap;gap:12px;align-items:center;color:var(--ink-soft);font-size:14px}
+.confirm{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+@media (prefers-reduced-motion: reduce){.fill{transition:none}}
+</style>
+
+<main>
+  <header>
+    <h1>Запуск сайта на maxtrade.si</h1>
+    <p class="sub">Идите сверху вниз и ставьте галочки. Отметки сохраняются в этом браузере.</p>
+  </header>
+
+  <div class="bar" aria-live="polite">
+    <div class="bar-top"><span>Готово</span><span id="count">0 из 0</span></div>
+    <div class="track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="pb"><div class="fill" id="fill"></div></div>
+  </div>
+
+  <div id="root"></div>
+
+  <div class="stop">
+    <h2>Чего не делать</h2>
+    <ul>
+      <li>Не менять серверы имён на ns17 / ns18.hostko.net, как советует письмо Hostko. Почта export@ и manager@ может перестать работать.</li>
+      <li>Не удалять в public_html файлы <code>.well-known</code>, <code>.403h.shtml</code>, <code>.404h.shtml</code>, <code>.user.ini</code>, <code>php.ini</code>.</li>
+      <li>Не включать Force HTTPS Redirect, пока не появился замок.</li>
+      <li>Не отправлять никому письмо Hostko с паролем.</li>
+    </ul>
+  </div>
+
+  <footer>
+    <span id="reset-area"><button class="ghost" id="reset" type="button">Сбросить все галочки</button></span>
+  </footer>
+</main>
+
+<script>
+var DIMA = "Дима, хостинг готов, сайт загружен. Нужно поменять в DNS домена maxtrade.si только две записи:\n1. Запись A для maxtrade.si (@) → 185.53.12.57\n2. Запись для www → CNAME на maxtrade.si (или A на тот же 185.53.12.57)\n\nСерверы имён (nameservers) не менять. Записи MX и TXT (почта) не трогать. Пришли, пожалуйста, скриншот всех DNS-записей до изменения, чтобы можно было вернуть всё назад.";
+
+var GROUPS = [
+  {title:"Уже сделано", note:"Эти шаги выполнены, их можно просто оставить отмеченными.", items:[
+    {id:"d1", on:true, t:"Хостинг оплачен и активирован", h:"Тариф SH Plus, письмо от Hostko получено."},
+    {id:"d2", on:true, t:"Вход в cPanel работает", h:"Временный адрес панели: http://185.53.12.57:2082"},
+    {id:"d3", on:true, t:"Сайт загружен в public_html", h:"Есть index.html, assets, en, zasebnost, .htaccess. Заглушка Hostko удалена."},
+    {id:"d4", on:true, t:"Домен maxtrade.si в cPanel основной", h:"Корневая папка /public_html."}
+  ]},
+  {title:"1. Подготовка", items:[
+    {id:"a1", t:"Сменить пароль cPanel на свой", h:"В cPanel откройте «Password & Security». Новый пароль сохраните у себя."}
+  ]},
+  {title:"2. Переключить домен", note:"Это делает Дима. Старый сайт на Weblium будет работать, пока он не поменяет запись.", items:[
+    {id:"b1", t:"Отправить сообщение Диме", h:"Текст ниже, его можно скопировать кнопкой.", msg:true},
+    {id:"b2", t:"Получить от Димы скриншот старых DNS-записей и сохранить его", h:"Он нужен, чтобы при необходимости вернуть всё назад за минуту."},
+    {id:"b3", t:"Дима написал, что записи изменены", h:"Изменения доходят от пары минут до нескольких часов."},
+    {id:"b4", t:"Открыть http://maxtrade.si и увидеть новый сайт", h:"Если ещё старый, подождите и обновите страницу. Через несколько часов без перемен напишите Claude."}
+  ]},
+  {title:"3. Замок (https)", note:"Только после того, как домен показывает новый сайт.", items:[
+    {id:"c1", t:"В cPanel открыть «SSL/TLS Status» и нажать «Run AutoSSL»"},
+    {id:"c2", t:"Через 5–15 минут открыть https://maxtrade.si, в адресной строке есть замок"},
+    {id:"c3", t:"В cPanel → «Domains» включить «Force HTTPS Redirect» у maxtrade.si", h:"Переключатель справа в строке домена."}
+  ]},
+  {title:"4. Проверка", items:[
+    {id:"e1", t:"https://maxtrade.si и https://maxtrade.si/en/ открываются на компьютере"},
+    {id:"e2", t:"То же самое на телефоне"},
+    {id:"e3", t:"Открываются политики: /zasebnost/ и /en/privacy/"},
+    {id:"e4", t:"Тестовая заявка через форму", h:"Пока ключ Web3Forms пуст, форма открывает почтовую программу с готовым письмом на export@maxtrade.si."},
+    {id:"e5", t:"Почта export@ и manager@ работает, как раньше"}
+  ]},
+  {title:"5. После запуска", items:[
+    {id:"f1", t:"Зарегистрироваться на web3forms.com на почту export@maxtrade.si и прислать ключ Claude", h:"Claude внесёт его в сайт и соберёт новый архив."},
+    {id:"f2", t:"Держать подписку Weblium ещё около недели", h:"На случай отката. Потом отключить."},
+    {id:"f3", t:"Отдать словенские тексты на вычитку носителю языка"},
+    {id:"f4", t:"Показать политику конфиденциальности юристу"},
+    {id:"f5", t:"Проверить сайт на 2–3 реальных телефонах", h:"Если картинка тормозит, напишите Claude, снизим плотность."}
+  ]}
+];
+
+var KEY = "mt-launch-checklist-v1", state = {};
+try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e) { state = {}; }
+function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e) {} }
+function isOn(it){ return (it.id in state) ? !!state[it.id] : !!it.on; }
+
+var root = document.getElementById("root"), total = 0;
+GROUPS.forEach(function(g){
+  var s = document.createElement("section");
+  var h = document.createElement("h2"); h.textContent = g.title;
+  if (g.note){ var sm = document.createElement("small"); sm.textContent = g.note; h.appendChild(sm); }
+  s.appendChild(h);
+  var ul = document.createElement("ul");
+  g.items.forEach(function(it){
+    total++;
+    var li = document.createElement("li"); li.className = "item"; li.id = "li-" + it.id;
+    var lab = document.createElement("label");
+    var cb = document.createElement("input"); cb.type = "checkbox"; cb.id = "cb-" + it.id; cb.checked = isOn(it);
+    var wrap = document.createElement("span");
+    var t = document.createElement("span"); t.className = "t"; t.textContent = it.t; wrap.appendChild(t);
+    if (it.h){ var hh = document.createElement("span"); hh.className = "hint"; hh.textContent = it.h; wrap.appendChild(hh); }
+    lab.appendChild(cb); lab.appendChild(wrap); li.appendChild(lab);
+    if (it.msg){
+      var box = document.createElement("div"); box.className = "msg";
+      var pre = document.createElement("pre"); pre.textContent = DIMA;
+      var btn = document.createElement("button"); btn.type = "button"; btn.textContent = "Скопировать сообщение";
+      btn.addEventListener("click", function(){
+        function fallback(){ var r = document.createRange(); r.selectNodeContents(pre); var sel = getSelection(); sel.removeAllRanges(); sel.addRange(r); btn.textContent = "Текст выделен, скопируйте его"; }
+        try { navigator.clipboard.writeText(DIMA).then(function(){ btn.textContent = "Скопировано"; setTimeout(function(){ btn.textContent = "Скопировать сообщение"; }, 2000); }, fallback); } catch(e){ fallback(); }
+      });
+      box.appendChild(pre); box.appendChild(btn); li.appendChild(box);
+    }
+    cb.addEventListener("change", function(){ state[it.id] = cb.checked; save(); paint(); });
+    ul.appendChild(li);
+  });
+  s.appendChild(ul); root.appendChild(s);
+});
+
+function paint(){
+  var n = 0;
+  GROUPS.forEach(function(g){ g.items.forEach(function(it){
+    var on = document.getElementById("cb-" + it.id).checked; if (on) n++;
+    document.getElementById("li-" + it.id).classList.toggle("on", on);
+  }); });
+  document.getElementById("count").textContent = n + " из " + total;
+  var pct = Math.round(n / total * 100);
+  document.getElementById("fill").style.width = pct + "%";
+  document.getElementById("pb").setAttribute("aria-valuenow", pct);
+}
+paint();
+
+var area = document.getElementById("reset-area");
+document.getElementById("reset").addEventListener("click", function(){
+  area.innerHTML = '<span class="confirm">Сбросить все галочки? <button type="button" id="yes">Да, сбросить</button> <button type="button" class="ghost" id="no">Отмена</button></span>';
+  document.getElementById("no").addEventListener("click", function(){ location.reload(); });
+  document.getElementById("yes").addEventListener("click", function(){
+    state = {}; save();
+    GROUPS.forEach(function(g){ g.items.forEach(function(it){ document.getElementById("cb-" + it.id).checked = !!it.on; }); });
+    paint(); location.reload();
+  });
+});
+</script>
