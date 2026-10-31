@@ -5,7 +5,7 @@
    also: second address that gets the same fallback e-mail (leave '' for none).
    wa:  WhatsApp number, digits only, no plus. */
 window.MXCFG = {
-  key: '',
+  key: 'c25a2fec-1ea3-4d98-ba7b-bff8738bc48c',
   to: 'export@maxtrade.si',
   also: 'manager@maxtrade.si',
   wa: '38670247352'
