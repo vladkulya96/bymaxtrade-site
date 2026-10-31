@@ -2,9 +2,11 @@
    key: Web3Forms access key (free, web3forms.com). Register it on the mailbox that should receive enquiries (export@maxtrade.si).
         While it is empty, the form opens the visitor's e-mail program with the enquiry ready to send to "to".
    to:  address for that fallback and for the error messages.
+   also: second address that gets the same fallback e-mail (leave '' for none).
    wa:  WhatsApp number, digits only, no plus. */
 window.MXCFG = {
   key: '',
   to: 'export@maxtrade.si',
+  also: 'manager@maxtrade.si',
   wa: '38670247352'
 };

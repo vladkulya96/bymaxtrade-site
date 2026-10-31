@@ -8,7 +8,7 @@
      While it is empty, the form opens the visitor's e-mail program with the request filled in. */
   var CFG = window.MXCFG || {};            /* site settings live in config.js (one file for both languages) */
   var W3F_KEY = CFG.key || '';
-  var TO = CFG.to || 'export@maxtrade.si', WA_NUM = CFG.wa || '38670247352', MAX = 600;
+  var TO = CFG.to || 'export@maxtrade.si', ALSO = CFG.also || '', WA_NUM = CFG.wa || '38670247352', MAX = 600;
   var f = document.getElementById('enq'), go = document.getElementById('fGo'), st = document.getElementById('fSt');
   var co = document.getElementById('fCo'), ph = document.getElementById('fPh'), em = document.getElementById('fEm'), ms = document.getElementById('fMs'), hp = document.getElementById('fHp');
   var cnt = document.getElementById('fCnt'), wa = document.getElementById('waBtn');
@@ -52,7 +52,7 @@
     if(bad){ bad.focus(); say(MX('chk', 'Please check the marked fields.')); return; }
     var subject = MX('subj', 'Website request (EN)') + ' — ' + co.value.trim();
     if(!W3F_KEY){
-      window.location.href = 'mailto:' + TO + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body());
+      window.location.href = 'mailto:' + TO + (ALSO ? ',' + ALSO : '') + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body());
       say(MX('mailOpen', 'Your e-mail program should open with the request ready to send. If it did not, write to {TO} or use WhatsApp.').replace('{TO}', TO));
       return;
     }
